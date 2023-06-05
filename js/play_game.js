@@ -1,4 +1,4 @@
-class playGame extends Phaser.Scene {
+class PlayGame extends Phaser.Scene {
   snake = [];
   apple = {};
   squareSize = 15; // The length of a side of the squares. Our image is 15x15 pixels.
@@ -15,7 +15,7 @@ class playGame extends Phaser.Scene {
   speedText;
 
   constructor() {
-    super("playGame");
+    super("PlayGame");
   }
 
   preload() {
@@ -142,19 +142,15 @@ class playGame extends Phaser.Scene {
   }
   
   generateApple() {
-    
-    const gameWidth = this.sys.game.config.width;
-    const gameHeight = this.sys.game.config.height;
-  
-    
-    const fieldWidth = gameWidth - this.squareSize * 2;
-    const fieldHeight = gameHeight - this.squareSize * 2;
-  
-    
-    const randomX = Math.floor(Math.random() * (fieldWidth / this.squareSize)) * this.squareSize + this.squareSize;
-    const randomY = Math.floor(Math.random() * (fieldHeight / this.squareSize)) * this.squareSize + this.squareSize;
-  
-    
+    // width: 800 - 15,
+    // height: 600 - 15,
+    // Chose a random place on the grid.
+    // X is between 0 and 785 (52*15)
+    // Y is between 0 and 585 (39*15)
+    const randomX = Math.floor(Math.random() * 52) * this.squareSize;
+    const randomY = Math.floor(Math.random() * 40) * this.squareSize;
+
+    // Add a new apple.
     this.apple = this.add.sprite(randomX, randomY, "apple");
     this.apple.setScale(0.8);
   }
@@ -195,7 +191,8 @@ class playGame extends Phaser.Scene {
     for (let i = 0; i < this.snake.length - 1; i++) {
       if (head.x == this.snake[i].x && head.y == this.snake[i].y) {
         // If so, go to game over screen.
-        this.scene.start("gameOver", { score: this.score });
+        this.snake = [];
+        this.scene.start("GameOver", { score: this.score });
       }
     }
   }
