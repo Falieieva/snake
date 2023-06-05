@@ -1,19 +1,19 @@
-class menu extends Phaser.Scene {
+class gameStart extends Phaser.Scene {
     
     constructor () {
-        super ("menu");
+        super ("gameStart");
     }
 
     preload() {
-        this.load.image('menu', 'assets/menu.png');
+        this.load.image("gameStart", "assets/menu.png");
     }
     
     create(){
-        this.add.sprite(400, 300, 'menu');
+        this.add.sprite(400, 300, "gameStart");
         this.input.on("pointerdown", (pointer) => {
             this.scene.start("playGame");
         });
-        this.input.keyboard.on('keydown', () => {
+        this.input.keyboard.on("keydown", () => {
             this.scene.start("playGame");
         });
     }
