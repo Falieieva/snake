@@ -4,7 +4,7 @@ class GameOver extends Phaser.Scene {
   }
 
   init(data) {
-      this.score = data.score;
+    this.score = data.score;
   }
 
   preload() {
@@ -19,7 +19,6 @@ class GameOver extends Phaser.Scene {
       fontSize: "42px",
       fill: "#ffffff",
     });
-   
 
     this.input.on("pointerdown", (pointer) => {
       this.scene.start("PlayGame");
@@ -30,3 +29,5 @@ class GameOver extends Phaser.Scene {
     });
   }
 }
+
+export default GameOver;
